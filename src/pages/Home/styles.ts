@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import Slider from '@material-ui/core/Slider';
 
 export const Container = styled.div`
   width: 100%;
@@ -32,7 +33,7 @@ export const AnimationContainer = styled.div`
   margin: 24px auto;
 
   width: 1280px;
-  height: 750px;
+  min-height: 750px;
   padding: 16px;
 
   display: flex;
@@ -51,8 +52,28 @@ export const AnimationContainer = styled.div`
     width: 50%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
+
+    > h1 {
+      width: 400px;
+      margin-bottom: 24px;
+      font: 24px Roboto, sans-serif;
+      font-weight: 500;
+      color: #000;
+    }
+
+    h2 {
+      width: 400px;
+      margin-bottom: 8px;
+      font: 16px Roboto, sans-serif;
+      font-weight: 500;
+      color: #000;
+    }
+
+    select {
+      width: 100px;
+      margin-bottom: 16px;
+    }
   }
 
   .preview-side {
@@ -62,7 +83,6 @@ export const AnimationContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
 
     > h2 {
       width: 400px;
@@ -85,7 +105,7 @@ export const CodePreview = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
-  height: 200px;
+  height: 220px;
   width: 400px;
   background-color: #f0f2fd;
   border: 1px solid #000;
@@ -93,6 +113,7 @@ export const CodePreview = styled.div`
 
   .header {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     color: #000;
 
@@ -103,7 +124,13 @@ export const CodePreview = styled.div`
       font-weight: 500;
     }
 
+    p {
+      margin-right: 8px;
+      color: green;
+    }
+
     svg {
+      cursor: pointer;
       height: 25px;
       width: 25px;
     }
@@ -113,5 +140,27 @@ export const CodePreview = styled.div`
     white-space: pre;
     color: #000;
     line-height: 24px;
+  }
+`;
+
+export const SliderBar = styled(Slider)`
+  max-width: 400px !important;
+  width: 100% !important;
+`;
+
+export const Divider = styled.div`
+  margin-top: 16px;
+  margin-bottom: 24px;
+  background-color: transparent;
+  width: 400px;
+  height: 1px;
+  border: 1px dashed #bec8ff;
+`;
+
+export const ColorPickers = styled.div`
+  display: flex;
+
+  > div {
+    width: 300px;
   }
 `;
