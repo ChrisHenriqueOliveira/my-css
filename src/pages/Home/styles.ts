@@ -1,6 +1,10 @@
 import styled, { keyframes } from 'styled-components';
 import Slider from '@material-ui/core/Slider';
 
+interface SquareProps {
+  bordersValue: string;
+}
+
 export const Container = styled.div`
   width: 100%;
   display: flex;
@@ -71,7 +75,7 @@ export const AnimationContainer = styled.div`
     }
 
     select {
-      width: 100px;
+      width: 150px;
       margin-bottom: 16px;
     }
   }
@@ -94,18 +98,20 @@ export const AnimationContainer = styled.div`
   }
 `;
 
-export const SquarePreview = styled.div`
+export const SquarePreview = styled.div<SquareProps>`
   height: 400px;
   width: 400px;
   background-color: #bec8ff;
   margin-bottom: 32px;
+
+  ${props => props.bordersValue};
 `;
 
 export const CodePreview = styled.div`
   display: flex;
   flex-direction: column;
   padding: 16px;
-  height: 220px;
+  height: 240px;
   width: 400px;
   background-color: #f0f2fd;
   border: 1px solid #000;

@@ -33,6 +33,8 @@ const Dashboard: React.FC = () => {
 
   const [borderWidth, setBorderWidth] = useState<number>(10);
   const [borderStyle, setBorderStyle] = useState<string>('solid');
+  const [boxSizing, setBoxSizing] = useState<string>('border-box');
+
   const [borderColor, setBorderColor] = useState<string>('#bec8ff');
   const [backgroundColor, setBackgroundColor] = useState<string>('#bec8ff');
 
@@ -41,7 +43,8 @@ const Dashboard: React.FC = () => {
     -moz-border-radius: ${leftTopBorder}px ${rightTopBorder}px ${rightBottomBorder}px ${leftBottomBorder}px;
     -webkit-border-radius: ${leftTopBorder}px ${rightTopBorder}px ${rightBottomBorder}px ${leftBottomBorder}px;
     border: ${borderWidth}px ${borderStyle} ${borderColor};
-    background-color: ${backgroundColor};`);
+    background-color: ${backgroundColor};
+    box-sizing: ${boxSizing};`);
 
   useEffect(() => {
     setCodeCopied(false);
@@ -50,12 +53,14 @@ const Dashboard: React.FC = () => {
     -moz-border-radius: ${leftTopBorder}px ${rightTopBorder}px ${rightBottomBorder}px ${leftBottomBorder}px;
     -webkit-border-radius: ${leftTopBorder}px ${rightTopBorder}px ${rightBottomBorder}px ${leftBottomBorder}px;
     border: ${borderWidth}px ${borderStyle} ${borderColor};
-    background-color: ${backgroundColor};`);
+    background-color: ${backgroundColor};
+    box-sizing: ${boxSizing};`);
   }, [
     backgroundColor,
     borderColor,
     borderStyle,
     borderWidth,
+    boxSizing,
     leftBottomBorder,
     leftTopBorder,
     rightBottomBorder,
@@ -122,6 +127,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={allBordersValue}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${allBordersValue}px`}
               max={200}
               onChange={handleAllBordersChanged}
               aria-labelledby="continuous-slider"
@@ -133,6 +139,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={leftTopBorder}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${leftTopBorder}px`}
               max={200}
               onChange={handleLeftTopBorderChanged}
               aria-labelledby="continuous-slider"
@@ -142,6 +149,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={rightTopBorder}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${rightTopBorder}px`}
               max={200}
               onChange={handleRightTopBorderChanged}
               aria-labelledby="continuous-slider"
@@ -151,6 +159,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={leftBottomBorder}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${leftBottomBorder}px`}
               max={200}
               onChange={handleLeftBottomBorderChanged}
               aria-labelledby="continuous-slider"
@@ -160,6 +169,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={rightBottomBorder}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${rightBottomBorder}px`}
               max={200}
               onChange={handleRightBottomBorderChanged}
               aria-labelledby="continuous-slider"
@@ -171,6 +181,7 @@ const Dashboard: React.FC = () => {
             <SliderBar
               value={borderWidth}
               valueLabelDisplay="auto"
+              valueLabelFormat={`${borderWidth}px`}
               max={200}
               onChange={handleWidthBorderChanged}
               aria-labelledby="continuous-slider"
@@ -196,6 +207,21 @@ const Dashboard: React.FC = () => {
               <option value="none">None</option>
             </select>
 
+            <h2>Box-sizing</h2>
+            <select
+              name="border-sizing"
+              value={boxSizing}
+              onChange={e => setBoxSizing(e.currentTarget.value)}
+            >
+              <option value="border-box">Border-box</option>
+              <option value="content-box">Content-box</option>
+              <option value="inherit">Inherit</option>
+              <option value="initial">Initial</option>
+              <option value="unset">Unset</option>
+            </select>
+
+            <Divider />
+
             <ColorPickers>
               <div>
                 <h2>Cor da borda</h2>
@@ -216,7 +242,7 @@ const Dashboard: React.FC = () => {
           <div className="preview-side">
             <h2>Preview do resultado</h2>
 
-            <SquarePreview />
+            <SquarePreview bordersValue={bordersValue} />
 
             <CodePreview>
               <div className="header">
